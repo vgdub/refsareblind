@@ -1,4 +1,5 @@
 Poolboys::Application.routes.draw do
+  root :to => "pages#homepage"
 
 # SESSIONS
   get "/login" => "sessions#new", as: :login
@@ -10,6 +11,6 @@ Poolboys::Application.routes.draw do
   post "/signup" => "registrations#create", as: :post_signup
 
 # USERS
-  get "/account" => "users#account", as: :user_account_url
+  get "/account" => "users#account", as: :user_account
 
 end
