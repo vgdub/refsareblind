@@ -13,4 +13,7 @@ Poolboys::Application.routes.draw do
 # USERS
   get "/account" => "users#account", as: :user_account
 
+# POOLS
+  get "/pools" => "pools#index", as: :pools
+
 end

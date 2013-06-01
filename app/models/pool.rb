@@ -5,10 +5,12 @@ class Pool < ActiveRecord::Base
 	has_many :users, through: :pool_users
 
 # VALIDATIONS
+	validates :name, presence: true, uniqueness: true
 
 # SPECIAL FEATURES
 
 # SCOPES
+	scope :public, -> { where(public: true) }
 
 # DELEGATIONS
 
@@ -16,6 +18,7 @@ class Pool < ActiveRecord::Base
 
 # CONFIG METHODS
 	def to_s
+		"#{name}"
 	end
 
 	def to_param
