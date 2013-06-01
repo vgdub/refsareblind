@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
 
 # CONFIG METHODS
 	def to_s
+		"#{firstname} #{lastname}"
 	end
 
 	def to_param

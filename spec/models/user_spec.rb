@@ -14,4 +14,12 @@ describe User do
 		it { should respond_to(:authenticate) }
 	end
 
+	describe "config" do
+		describe "#to_s" do
+			it "displays the correct name" do
+				FactoryGirl.create(:user).to_s.should == "Jordan Leigh"
+			end
+		end
+	end
+
 end
