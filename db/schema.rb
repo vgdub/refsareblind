@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20130601161932) do
     t.datetime "updated_at"
     t.boolean  "public",       default: false
     t.string   "name"
+    t.string   "slug"
   end
 
   create_table "users", force: true do |t|
