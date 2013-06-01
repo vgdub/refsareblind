@@ -1,7 +1,7 @@
 class Pool < ActiveRecord::Base
 # ASSOCIATIONS
 	belongs_to :pool_type
-	has_many :pool_users
+	has_many :pool_users, dependent: :destroy
 	has_many :users, through: :pool_users
 
 # VALIDATIONS
@@ -26,6 +26,10 @@ class Pool < ActiveRecord::Base
 	end
 
 	def to_param
+	end
+
+	def destroy
+		self.update_attribute("active", false)
 	end
 
 # CLASS METHODS

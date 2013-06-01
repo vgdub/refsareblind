@@ -7,4 +7,12 @@ class ApplicationController < ActionController::Base
   	@current_user ||= User.find_by_id(session[:user_id])
   end
 
+  def require_user
+  	@user = current_user
+  	if !@user.present?
+  		flash[:notice] = "You need to be signed in to access that resource"
+  		redirect_to login_url
+  	end
+  end
+
 end

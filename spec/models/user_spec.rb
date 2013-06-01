@@ -20,6 +20,16 @@ describe User do
 				FactoryGirl.create(:user).to_s.should == "Jordan Leigh"
 			end
 		end
+
+		describe "#destroy" do
+			it "performs a soft delete on the user" do
+				user = FactoryGirl.create(:user)
+				user.active.should eq true
+				user.destroy
+				user.active.should eq false
+			end
+		end
+
 	end
 
 end

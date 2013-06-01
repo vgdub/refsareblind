@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 # ASSOCIATIONS
-	has_many :pool_users
+	has_many :pool_users, dependent: :destroy
 	has_many :pools, through: :pool_users
 
 # VALIDATIONS
@@ -21,6 +21,10 @@ class User < ActiveRecord::Base
 	end
 
 	def to_param
+	end
+
+	def destroy
+		self.update_attribute("active", false)
 	end
 
 # CLASS METHODS
