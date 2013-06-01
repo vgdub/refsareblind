@@ -17,5 +17,6 @@ Poolboys::Application.routes.draw do
   get "/pools" => "pools#index", as: :pools
   post "/pools" => "pools#create", as: :post_pools
   get "/pools/new" => "pools#new", as: :new_pool
+  get "/pools/:slug" => "pools#show", as: :pool
 
 end
