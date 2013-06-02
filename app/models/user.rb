@@ -31,6 +31,9 @@ class User < ActiveRecord::Base
 # CLASS METHODS
 
 # INSTANCE METHODS
+	def nfl_teams_used(pool_id)
+		NflTeam.joins(:nfl_picks).where("pool_id = ? AND user_id = ? AND locked IS true", pool_id, self.id)
+	end
 
 # PRIVATE METHODS
 private

@@ -1,1 +1,6 @@
-%h1 Create your new picks
+%h1 Choose your team
+%h2= "NFL WEEK #{CURRENT_NFL_WEEK}"
+
+.nfl-teams
+	- @available_teams.each do |team|
+		%p= team

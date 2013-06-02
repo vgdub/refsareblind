@@ -5,6 +5,7 @@ class CreateNflPicks < ActiveRecord::Migration
     	t.integer :pool_id
     	t.integer :nfl_team_id
     	t.integer :week
+      t.boolean :locked, default: false
     	t.string :result
       t.timestamps
     end

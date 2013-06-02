@@ -27,3 +27,4 @@
 # Environment Variables
 	STRIPE_PUBLISHABLE_KEY
 	STRIPE_SECRET_KEY
+	CURRENT_NFL_WEEK - The current week of the NFL season

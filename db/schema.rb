@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20130602050234) do
     t.integer  "pool_id"
     t.integer  "nfl_team_id"
     t.integer  "week"
+    t.boolean  "locked",      default: false
     t.string   "result"
     t.datetime "created_at"
     t.datetime "updated_at"

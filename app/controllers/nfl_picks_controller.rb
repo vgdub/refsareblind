@@ -3,6 +3,7 @@ class NflPicksController < ApplicationController
 	before_action :require_settled_payment
 
 	def new
+		@available_teams = NflTeam.all - current_user.nfl_teams_used(@pool.id)
 	end
 
 private
