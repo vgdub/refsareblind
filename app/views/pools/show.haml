@@ -1,5 +1,5 @@
-%h1 POOL PAGE
-%h2 this page is important
+%h1= @pool
+%h2= @pool.pool_type
 
-%p= @pool
-%p= @pool.pool_type.name
+- @pool.users.each do |user|
+	%p= user

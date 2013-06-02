@@ -13,7 +13,7 @@ class PoolType < ActiveRecord::Base
 
 # CONFIG METHODS
 	def to_s
-		"#{name}"
+		"#{sport} - #{name}"
 	end
 
 	def to_param
