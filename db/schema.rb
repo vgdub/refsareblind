@@ -11,10 +11,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130602040423) do
+ActiveRecord::Schema.define(version: 20130602050234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "nfl_matchups", force: true do |t|
+    t.integer  "home_team_id"
+    t.integer  "away_team_id"
+    t.integer  "week"
+    t.decimal  "point_spread",    precision: 3, scale: 1
+    t.integer  "home_team_score"
+    t.integer  "away_team_score"
+    t.boolean  "final",                                   default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "nfl_picks", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "pool_id"
+    t.integer  "nfl_team_id"
+    t.integer  "week"
+    t.string   "result"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "nfl_teams", force: true do |t|
+    t.string   "city"
+    t.string   "conference", limit: 3
+    t.string   "division",   limit: 5
+    t.string   "name"
+    t.string   "abbr",       limit: 3
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "pool_types", force: true do |t|
     t.string   "sport"

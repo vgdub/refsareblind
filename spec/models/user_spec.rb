@@ -4,6 +4,7 @@ describe User do
 
 	describe "associations" do
 		it { should have_many(:pools).through(:pool_users) }
+		it { should have_many(:nfl_picks) }
 	end
 
 	describe "validations" do
