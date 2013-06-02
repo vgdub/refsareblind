@@ -21,4 +21,7 @@ RefsAreBlind::Application.routes.draw do
   get "/pools/:slug/payment" => "pools#pool_payment", as: :pool_payment
   post "/pools/payment" => "pools#post_pool_payment", as: :post_pool_payment
 
+# PICKS
+  get "/pools/:slug/picks/new" => "nfl_picks#new", as: :new_nfl_pick
+
 end
