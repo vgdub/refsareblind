@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Poolboys::Application.load_tasks
+RefsAreBlind::Application.load_tasks

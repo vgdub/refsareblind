@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Poolboys::Application.config.secret_key_base = '5f0d6777d64712d1ca612d9c450eb3c8803d321ac9a4169e5fc4b70762baf5e41cea6540f547abc23982ed7af334a129ee06165e5440604b44339751190b842f'
+RefsAreBlind::Application.config.secret_key_base = '5f0d6777d64712d1ca612d9c450eb3c8803d321ac9a4169e5fc4b70762baf5e41cea6540f547abc23982ed7af334a129ee06165e5440604b44339751190b842f'
