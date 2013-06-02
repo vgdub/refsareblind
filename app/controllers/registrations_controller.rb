@@ -4,10 +4,16 @@ class RegistrationsController < ApplicationController
 	end
 
 	def create
-		user = User.create! user_params
-		session[:user_id] = user.id
-		flash[:notice] = "Account Successfully Created"
-		redirect_to :user_account_url
+		user = User.new user_params
+		if user.save
+			session[:user_id] = user.id
+			flash[:notice] = "Account Successfully Created"
+			redirect_to user_account_url
+			return
+		else
+			@errors = user.errors.full_messages
+			render :new
+		end
 	end
 
 private

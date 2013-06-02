@@ -14,9 +14,10 @@ RefsAreBlind::Application.routes.draw do
   get "/account" => "users#account", as: :user_account
 
 # POOLS
-  get "/pools" => "pools#index", as: :pools
-  post "/pools" => "pools#create", as: :post_pools
   get "/pools/new" => "pools#new", as: :new_pool
+  post "/pools" => "pools#create", as: :post_pools
   get "/pools/:slug" => "pools#show", as: :pool
+  get "/pools" => "pools#index", as: :pools
+  get "/pools/:slug/payment" => "pools#pool_payment", as: :pool_payment
 
 end

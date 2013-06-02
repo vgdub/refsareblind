@@ -21,6 +21,9 @@ gem 'rails', '4.0.0.rc1'
 # USER MANAGEMENT
 	gem 'bcrypt-ruby', '~> 3.0.0'
 
+# PAYMENT PROCESSING
+	gem 'stripe'
+
 # FILE UPLOADS
 	gem 'carrierwave'
 	gem 'fog'

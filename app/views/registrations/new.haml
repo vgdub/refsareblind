@@ -1,5 +1,10 @@
 %h1 SIGNUP ROUTE
 
+- if @errors.present?
+	.errors
+		- @errors.each do |error|
+			%p= error
+
 = form_tag "/signup" do
 	%fieldset
 		= text_field :user, :firstname, placeholder: "First Name"
