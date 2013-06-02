@@ -15,6 +15,9 @@ class Pool < ActiveRecord::Base
 	scope :public, -> { where(public: true) }
 
 # DELEGATIONS
+	def entries
+		self.pool_users
+	end
 
 # CALLBACKS
 	before_validation on: :create do
@@ -36,12 +39,16 @@ class Pool < ActiveRecord::Base
 # CLASS METHODS
 
 # INSTANCE METHODS
-	def eliminated_users
-		return users.select { |user| user.eliminated?(self.id) }
+	def eliminated_entries
+		return entries.select { |entry| entry.eliminated? }
 	end
 
-	def remaining_users
-		return users - eliminated_users
+	def remaining_entries
+		return entries - eliminated_entries
+	end
+
+	def ordered_standings
+		return entries.sort_by { |entry| entry.total_score }.reverse
 	end
 
 # PRIVATE METHODS
