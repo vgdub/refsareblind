@@ -1,7 +1,14 @@
 class PoolsController < ApplicationController
 	before_action :require_user, only: [:new, :create, :show]
-	before_action :set_pool, only: [:show, :pool_payment]
+	before_action :set_pool, only: [:show, :pool_payment, :post_pool_payment]
 	before_action :require_settled_payment, only: [:show]
+
+	def show
+	end
+
+	def index
+		@pools = Pool.public
+	end
 
 	def new
 	end
@@ -21,14 +28,36 @@ class PoolsController < ApplicationController
 		end
 	end
 
-	def show
-	end
-
 	def pool_payment
+		if @pool.payment_settled?
+			flash[:error] = "This pool has already been paid for"
+			redirect_to pool_url(@pool.slug)
+		end
 	end
 
-	def index
-		@pools = Pool.public
+	def post_pool_payment
+		begin
+			customer = Stripe::Customer.create card: params[:stripeToken], description: current_user.email
+		rescue Exception => e
+			# LOG e.message
+			raise e.inspect
+		end
+
+		begin
+			charge = Stripe::Charge.create(
+				amount: 4000,
+				currency: "usd",
+				customer: customer.id
+				)
+		rescue Stripe::CardError => e
+			raise e.inspect
+		end
+
+		current_user.update_attributes(stripe_customer_id: customer.id)
+		pool = Pool.find(params[:pool_id])
+		pool.update_attributes(payment_settled: true)
+		flash[:notice] = "Your charge has been approved, a receipt will be emailed to you shortly. Welcome to Refs Are Blind"
+		redirect_to pool_url(pool.slug)
 	end
 
 private

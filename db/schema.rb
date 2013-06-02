@@ -52,8 +52,8 @@ ActiveRecord::Schema.define(version: 20130602012613) do
     t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "active",                default: true
-    t.string   "stripe_customer_token"
+    t.boolean  "active",             default: true
+    t.string   "stripe_customer_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
