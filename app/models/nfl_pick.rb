@@ -2,6 +2,7 @@ class NflPick < ActiveRecord::Base
 # ASSOCIATIONS
 	belongs_to :user
 	belongs_to :pool
+	belongs_to :pool_user
 	belongs_to :nfl_team
 	belongs_to :nfl_matchup
 

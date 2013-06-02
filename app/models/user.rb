@@ -13,6 +13,9 @@ class User < ActiveRecord::Base
 # SCOPES
 
 # DELEGATIONS
+	def entries
+		self.pool_users
+	end
 
 # CALLBACKS
 
@@ -31,13 +34,6 @@ class User < ActiveRecord::Base
 # CLASS METHODS
 
 # INSTANCE METHODS
-	def nfl_teams_used(pool_id)
-		NflTeam.joins(:nfl_picks).where("pool_id = ? AND user_id = ? AND locked IS true", pool_id, self.id)
-	end
-
-	def eliminated?(pool_id)
-		NflPick.where("pool_id = ? AND user_id = ?", pool_id, self.id).pluck(:result).include?("loss") ? true : false ;
-	end
 
 # PRIVATE METHODS
 private
