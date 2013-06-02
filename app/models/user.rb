@@ -35,6 +35,10 @@ class User < ActiveRecord::Base
 		NflTeam.joins(:nfl_picks).where("pool_id = ? AND user_id = ? AND locked IS true", pool_id, self.id)
 	end
 
+	def eliminated?(pool_id)
+		NflPick.where("pool_id = ? AND user_id = ?", pool_id, self.id).pluck(:result).include?("loss") ? true : false ;
+	end
+
 # PRIVATE METHODS
 private
 

@@ -1,5 +1,14 @@
 %h1= @pool
 %h2= @pool.pool_type
 
-- @pool.users.each do |user|
-	%p= user
+- if @pool.pool_type = PoolType.where(name: "survival").first
+	- @pool.remaining_users.each do |user|
+		%p= user
+	- @pool.eliminated_users.each do |user|
+		%p.eliminated= user
+
+/ - if @pool.pool_type_id = PoolType.where(name: "supercontest").pluck(:id).first.id
+
+:sass
+	.eliminated
+		background-color: grey

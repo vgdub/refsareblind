@@ -36,6 +36,13 @@ class Pool < ActiveRecord::Base
 # CLASS METHODS
 
 # INSTANCE METHODS
+	def eliminated_users
+		return users.select { |user| user.eliminated?(self.id) }
+	end
+
+	def remaining_users
+		return users - eliminated_users
+	end
 
 # PRIVATE METHODS
 private

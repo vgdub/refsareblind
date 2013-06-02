@@ -39,7 +39,6 @@ class PoolsController < ApplicationController
 		begin
 			customer = Stripe::Customer.create card: params[:stripeToken], description: current_user.email
 		rescue Exception => e
-			# LOG e.message
 			raise e.inspect
 		end
 
