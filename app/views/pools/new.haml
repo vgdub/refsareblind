@@ -5,5 +5,8 @@
 		= text_field :pool, :name, placeholder: "Pool Name"
 	%fieldset
 		= select_tag :pool_type_id, options_for_select(PoolType.all.map { |pt| [pt.name, pt.id] }), name: "pool[pool_type_id]"
+	%fieldset
+		= label_tag "This is the password that members will need to create their entry in the pool"
+		= text_field :pool, :access_code, placeholder: "Access Code"
 	%fieldset.actions
 		= submit_tag "Create Pool"

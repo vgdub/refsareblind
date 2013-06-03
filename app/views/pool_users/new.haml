@@ -1,6 +1,6 @@
 %h1= "Join Pool - #{@pool}"
 
-= form_tag "/pool_users" do
+= form_tag :post_pool_users do
 	= hidden_field_tag :pool_id, @pool.id
 	%fieldset
 		= label_tag :access_code, "Access Code"

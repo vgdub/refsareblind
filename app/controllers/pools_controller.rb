@@ -17,9 +17,10 @@ class PoolsController < ApplicationController
 		pool = Pool.new
 		pool.name = params[:pool][:name]
 		pool.pool_type_id = params[:pool][:pool_type_id]
+		pool.access_code = params[:pool][:access_code]
 		pool.owner = current_user.id
 		if pool.save
-			PoolUser.create! user_id: current_user.id, pool_id: pool.id, role: "owner"
+			PoolUser.create! user_id: current_user.id, pool_id: pool.id, role: "owner", approved: true
 			flash[:notice] = "Your pool has successfully been created"
 			redirect_to pool_payment_url(pool.slug)
 		else

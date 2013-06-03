@@ -15,7 +15,7 @@ class PoolUsersController < ApplicationController
 			redirect_to pool_url(@pool.slug)
 		else
 			flash[:error] = "The access code that you entered is invalid"
-			render :new
+			redirect_to new_pool_user_url(@pool.slug)
 		end
 
 	end

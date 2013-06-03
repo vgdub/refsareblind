@@ -16,7 +16,7 @@ class PoolUser < ActiveRecord::Base
 
 # CONFIG METHODS
 	def to_s
-		"#{self.name} - #{self.user}"
+		self.name.present? ? "#{self.name} ( #{self.user} )" : "#{self.user}" ;
 	end
 
 	def to_param

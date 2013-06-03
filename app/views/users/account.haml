@@ -3,4 +3,8 @@
 .account-details
 	%p= @user
 	%p= @user.email
-	%p= @user.password_digest
+
+.pools
+	- @user.entries.each do |entry|
+		.entry
+			= link_to "#{entry.name} - #{entry.pool.name}", pool_url(entry.pool.slug)
