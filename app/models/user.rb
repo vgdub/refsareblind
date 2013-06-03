@@ -34,6 +34,9 @@ class User < ActiveRecord::Base
 # CLASS METHODS
 
 # INSTANCE METHODS
+	def has_entry_in_pool?(pool_id)
+		PoolUser.where("user_id = ? AND pool_id = ?", self.id, pool_id).present? ? true : false ;
+	end
 
 # PRIVATE METHODS
 private

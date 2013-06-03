@@ -1,7 +1,7 @@
 class PoolsController < ApplicationController
 	before_action :require_user, only: [:new, :create, :show]
 	before_action :set_pool, only: [:show, :pool_payment, :post_pool_payment]
-	before_action :require_settled_payment, only: [:show]
+	before_action :require_settled_payment, only: [:show, :join_pool]
 
 	def show
 	end

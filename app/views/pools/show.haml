@@ -2,10 +2,7 @@
 %h2= @pool.pool_type
 
 - if @pool.pool_type == PoolType.where(name: "survival").first
-	- @pool.remaining_entries.each do |entry|
-		%p= entry
-	- @pool.eliminated_entries.each do |entry|
-		%p.eliminated= entry
+	= render "show_survival"
 
 - if @pool.pool_type == PoolType.where(name: "super contest").first
 	- @pool.ordered_standings.each do |entry|

@@ -1,0 +1,2 @@
+- (@pool.remaining_entries + @pool.eliminated_entries).each do |entry|
+	%p{class: ("eliminated" if entry.eliminated?)}= entry
