@@ -1,6 +1,6 @@
 class PoolsController < ApplicationController
 	before_action :require_user, only: [:new, :create, :show]
-	before_action :set_pool, only: [:show, :pool_payment, :post_pool_payment]
+	before_action :set_pool, only: [:show, :pool_payment, :post_pool_payment, :admin_dashboard]
 	before_action :require_settled_payment, only: [:show, :join_pool]
 
 	def show
@@ -57,6 +57,9 @@ class PoolsController < ApplicationController
 		pool.update_attributes(payment_settled: true)
 		flash[:notice] = "Your charge has been approved, a receipt will be emailed to you shortly. Welcome to Refs Are Blind"
 		redirect_to pool_url(pool.slug)
+	end
+
+	def admin_dashboard
 	end
 
 private

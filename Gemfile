@@ -17,6 +17,7 @@ gem 'rails', '4.0.0.rc1'
 # ASSETS - FEATURES
 	gem 'jquery-rails'
 	gem 'turbolinks'
+	gem 'jquery-turbolinks'
 
 # USER MANAGEMENT
 	gem 'bcrypt-ruby', '~> 3.0.0'

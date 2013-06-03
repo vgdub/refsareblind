@@ -20,6 +20,18 @@ class PoolUsersController < ApplicationController
 
 	end
 
+	def approve_entry
+		entry = PoolUser.find(params[:entry_id])
+		entry.update_attributes(approved: true) if current_user.is_admin_of_pool?(entry.pool_id)
+		render nothing: true
+	end
+
+	def remove_approval
+		entry = PoolUser.find(params[:entry_id])
+		entry.update_attributes(approved: false) if current_user.is_admin_of_pool?(entry.pool_id)
+		render nothing: true
+	end
+
 private
 	def set_pool
 		@pool = Pool.includes(:pool_type).find_by_slug(params[:slug])

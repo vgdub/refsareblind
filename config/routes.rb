@@ -20,10 +20,13 @@ RefsAreBlind::Application.routes.draw do
   get "/pools" => "pools#index", as: :pools
   get "/pools/:slug/payment" => "pools#pool_payment", as: :pool_payment
   post "/pools/payment" => "pools#post_pool_payment", as: :post_pool_payment
+  get "/pools/:slug/admin" => "pools#admin_dashboard", as: :pool_admin_dashboard
 
 # ENTRIES
   get "/pools/:slug/join" => "pool_users#new", as: :new_pool_user
-  post "/pool_users" => "pool_users#create", as: :post_pool_users
+  post "/pool-users" => "pool_users#create", as: :post_pool_users
+  post "/pool-users/approve-entry" => "pool_users#approve_entry", as: :approve_entry
+  post "/pool-users/remove-approval" => "pool_users#remove_approval", as: :remove_approval
 
 # PICKS
   get "/pools/:slug/picks/new" => "nfl_picks#new", as: :new_nfl_pick

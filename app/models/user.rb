@@ -38,6 +38,10 @@ class User < ActiveRecord::Base
 		PoolUser.where("user_id = ? AND pool_id = ?", self.id, pool_id).present? ? true : false ;
 	end
 
+	def is_admin_of_pool?(pool_id)
+		PoolUser.where("user_id = ? AND pool_id = ? AND role IN ('owner', 'admin')", self.id, pool_id).present? ? true : false ;
+	end
+
 # PRIVATE METHODS
 private
 
