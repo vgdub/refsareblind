@@ -1,2 +1,11 @@
-- (@pool.remaining_entries + @pool.eliminated_entries).each do |entry|
-	%p{class: ("eliminated" if entry.eliminated?)}= entry
+%table
+	%thead
+		%th User
+		- CURRENT_NFL_WEEK.times do |i|
+			%th= "Week #{i+1}"
+	%tbody
+		- (@pool.remaining_entries + @pool.eliminated_entries).each do |entry|
+			%tr{class: ("eliminated" if entry.eliminated?)}
+				%td= entry
+				- CURRENT_NFL_WEEK.times do |i|
+					%td.survival-pick= entry.weekly_picks(i+1).first.try(:nfl_team)

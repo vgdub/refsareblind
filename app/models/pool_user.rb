@@ -37,6 +37,10 @@ def total_score
 	NflPick.where("pool_id = ? AND user_id = ? AND result = 'win'", self.pool_id, self.user_id).count + (NflPick.where("pool_id = ? AND user_id = ? AND result = 'tie'", self.pool_id, self.user_id).count / 2.0)
 end
 
+def weekly_picks(week)
+	NflPick.joins(:nfl_matchup).where("pool_id = ? AND user_id = ? AND week = ? AND locked IS true", self.pool_id, self.user_id, week)
+end
+
 # PRIVATE METHODS
 private
 
