@@ -5,8 +5,7 @@
 	= render "show_survival"
 
 - if @pool.pool_type == PoolType.where(name: "super contest").first
-	- @pool.ordered_standings.each do |entry|
-		%p= "#{entry} - #{entry.total_score}"
+	= render "show_supercontest"
 
 :sass
 	.eliminated
