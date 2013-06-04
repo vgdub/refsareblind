@@ -23,7 +23,8 @@ RefsAreBlind::Application.routes.draw do
   get "/pools/:slug/admin" => "pools#admin_dashboard", as: :pool_admin_dashboard
 
 # ENTRIES
-  get "/pools/:slug/join" => "pool_users#new", as: :new_pool_user
+  get "/pools/:slug/join" => "pool_users#new", as: :new_entry
+  get "/pools/:slug/edit-entry" => "pool_users#edit", as: :edit_entry
   post "/pool-users" => "pool_users#create", as: :post_pool_users
   post "/pool-users/approve-entry" => "pool_users#approve_entry", as: :approve_entry
   post "/pool-users/remove-approval" => "pool_users#remove_approval", as: :remove_approval

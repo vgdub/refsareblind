@@ -1,5 +1,6 @@
 class PoolUsersController < ApplicationController
-	before_action :set_pool, only: [:new]
+	before_action :set_pool, only: [:new, :edit]
+	before_action :set_current_entry
 	before_action :check_user_eligible_to_join, only: [:new]
 
 	def new
@@ -15,9 +16,12 @@ class PoolUsersController < ApplicationController
 			redirect_to pool_url(@pool.slug)
 		else
 			flash[:error] = "The access code that you entered is invalid"
-			redirect_to new_pool_user_url(@pool.slug)
+			redirect_to new_entry_url(@pool.slug)
 		end
 
+	end
+
+	def edit
 	end
 
 	def approve_entry
@@ -35,6 +39,20 @@ class PoolUsersController < ApplicationController
 private
 	def set_pool
 		@pool = Pool.includes(:pool_type).find_by_slug(params[:slug])
+	end
+
+	def set_current_entry
+		if !current_user
+			flash[:notice] = "You need to be signed in to access that resource"
+			redirect_to login_url
+			return
+		else
+			@current_entry = PoolUser.where(user_id: current_user.id, pool_id: @pool.id).first
+			if !@current_entry
+				flash[:notice] = "It looks like you are not a member of the league you are trying to access, enter the access code to join this league"
+				redirect_to new_entry_url(@pool.slug)
+			end
+		end
 	end
 
 	def check_user_eligible_to_join

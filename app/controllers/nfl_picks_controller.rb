@@ -40,7 +40,7 @@ private
 			@current_entry = PoolUser.where(user_id: current_user.id, pool_id: @pool.id).first
 			if !@current_entry
 				flash[:notice] = "It looks like you are not a member of the league you are trying to access, enter the access code to join this league"
-				redirect_to new_pool_user_url(@pool.slug)
+				redirect_to new_entry_url(@pool.slug)
 			end
 		end
 	end
