@@ -8,7 +8,7 @@
 				%span.matchup-team.home-team{data: {team_id: matchup.home_team_id}}= matchup.home_team
 
 .my-picks
-	%table.picks-table{data: {total_picks: @current_entry.unlocked_weekly_picks(CURRENT_NFL_WEEK).count}}
+	%table.picks-table{data: {total_picks: @current_entry.weekly_picks(CURRENT_NFL_WEEK, false).count}}
 		%thead
 			%tr
 				%th My Picks
