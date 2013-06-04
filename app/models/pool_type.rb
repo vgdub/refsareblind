@@ -20,6 +20,13 @@ class PoolType < ActiveRecord::Base
 	end
 
 # CLASS METHODS
+	def self.survival
+		self.where(name: "survival").first
+	end
+
+	def self.supercontest
+		self.where(name: "supercontest").first
+	end
 
 # INSTANCE METHODS
 

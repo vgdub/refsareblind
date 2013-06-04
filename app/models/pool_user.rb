@@ -33,16 +33,12 @@ def eliminated?
 	NflPick.where("pool_user_id = ?", self.id).pluck(:result).include?("loss") ? true : false ;
 end
 
+def weekly_picks(week, locked)
+	NflPick.joins(:nfl_matchup).where("pool_user_id = ? AND week = ? AND locked = ?", self.id, week, locked)
+end
+
 def total_score
-	NflPick.where("pool_user_id = ? AND result = 'win'", self.id).count + (NflPick.where("pool_id = ? AND user_id = ? AND result = 'tie'", self.pool_id, self.user_id).count / 2.0)
-end
-
-def weekly_picks(week)
-	NflPick.joins(:nfl_matchup).where("pool_user_id = ? AND week = ? AND locked IS true", self.id, week)
-end
-
-def number_of_picks(week)
-	NflPick.joins(:nfl_matchup).where("pool_user_id = ? AND week = ?", self.id, week).count
+	NflPick.where("pool_user_id = ? AND result = 'win'", self.id).count + NflPick.where("pool_user_id = ? AND result = 'tie'", self.id).count / 2.0
 end
 
 def nfl_survival_pick(week)
@@ -53,3 +49,4 @@ end
 private
 
 end
+

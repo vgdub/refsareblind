@@ -4,7 +4,7 @@ class NflPicksController < ApplicationController
 	before_action :require_settled_payment
 
 	def new
-		if @pool.pool_type == PoolType.where(name: "survival").first
+		if @pool.pool_type == PoolType.survival
 			@teams_used = @current_entry.nfl_teams_used
 			@available_teams = NflTeam.all - @teams_used
 		end

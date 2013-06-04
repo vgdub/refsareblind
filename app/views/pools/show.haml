@@ -1,10 +1,10 @@
 %h1= @pool
 %h2= @pool.pool_type
 
-- if @pool.pool_type == PoolType.where(name: "survival").first
+- if @pool.pool_type == PoolType.survival
 	= render "show_survival"
 
-- if @pool.pool_type == PoolType.where(name: "supercontest").first
+- if @pool.pool_type == PoolType.supercontest
 	= render "show_supercontest"
 
 :sass

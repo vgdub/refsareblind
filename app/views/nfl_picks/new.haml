@@ -3,8 +3,8 @@
 	%h1 Choose your team
 	%h2= "NFL WEEK #{CURRENT_NFL_WEEK}"
 
-	- if @pool.pool_type == PoolType.where(name: "survival").first
+	- if @pool.pool_type == PoolType.survival
 		= render "new_survival_pick"
 
-	- if @pool.pool_type == PoolType.where(name: "supercontest").first
+	- if @pool.pool_type == PoolType.supercontest
 		= render "new_supercontest_picks"
