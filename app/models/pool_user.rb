@@ -41,6 +41,10 @@ def weekly_picks(week)
 	NflPick.joins(:nfl_matchup).where("pool_id = ? AND user_id = ? AND week = ? AND locked IS true", self.pool_id, self.user_id, week)
 end
 
+def number_of_picks(week)
+	NflPick.joins(:nfl_matchup).where("pool_id = ? AND user_id = ? AND week = ?", self.pool_id, self.user_id, week).count
+end
+
 # PRIVATE METHODS
 private
 

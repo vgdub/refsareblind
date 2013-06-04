@@ -1,8 +1,34 @@
 .matchups
 	- @matchups.each do |matchup|
-		.matchup
-			%p= "#{matchup.away_team} #{point_spreadify(matchup.point_spread.to_f)} @ #{matchup.home_team}"
-			/ .home-team
-			/ 	%p= matchup.home_team
-			/ .away-team
-			/ 	%p= matchup.away_team
+		.matchup{data: {matchup_id: matchup.id}}
+			%p
+				%span.matchup-team.away-team{data: {team_id: matchup.away_team_id}}= matchup.away_team
+				%span.point-spread= point_spreadify(matchup.point_spread.to_f)
+				%span.at-symbol @
+				%span.matchup-team.home-team{data: {team_id: matchup.home_team_id}}= matchup.home_team
+
+.my-picks
+	%table.picks-table{data: {total_picks: @current_entry.number_of_picks(CURRENT_NFL_WEEK)}}
+		%thead
+			%tr
+				%th My Picks
+			%tr
+				%th Number
+				%th Pick
+		%tbody
+			- 5.times do |i|
+				%tr{class: "pick#{i+1}"}
+					%td.pick-number.centered= i+1
+					%td.pick
+
+:sass
+	.matchups
+		width: 600px
+		position: absolute
+	.my-picks
+		width: 300px
+		position: absolute
+		right: 200px
+
+		.centered
+			text-align: center

@@ -1,8 +1,10 @@
-%h1 Choose your team
-%h2= "NFL WEEK #{CURRENT_NFL_WEEK}"
+.pool{data: {pool_type: @pool.pool_type.name}}
 
-- if @pool.pool_type == PoolType.where(name: "survival").first
-	= render "new_survival_pick"
+	%h1 Choose your team
+	%h2= "NFL WEEK #{CURRENT_NFL_WEEK}"
 
-- if @pool.pool_type == PoolType.where(name: "super contest").first
-	= render "new_supercontest_picks"
+	- if @pool.pool_type == PoolType.where(name: "survival").first
+		= render "new_survival_pick"
+
+	- if @pool.pool_type == PoolType.where(name: "supercontest").first
+		= render "new_supercontest_picks"

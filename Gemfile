@@ -16,6 +16,7 @@ gem 'rails', '4.0.0.rc1'
 
 # ASSETS - FEATURES
 	gem 'jquery-rails'
+	gem 'underscore-rails'
 	gem 'turbolinks'
 	gem 'jquery-turbolinks'
 
