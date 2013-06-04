@@ -8,4 +8,4 @@
 			%tr{class: ("eliminated" if entry.eliminated?)}
 				%td= entry
 				- CURRENT_NFL_WEEK.times do |i|
-					%td.survival-pick= entry.weekly_picks(i+1).first.try(:nfl_team)
+					%td.survival-pick= entry.weekly_picks(i+1).first.try(:nfl_team) || "?"

@@ -25,7 +25,7 @@ class NflMatchup < ActiveRecord::Base
 # CLASS METHODS
 
 # INSTANCE METHODS
-	def winning_team
+	def winning_team_with_spread
 		if self.final?
 			return home_team_id if home_team_score > away_team_score + point_spread
 			return away_team_id if away_team_score + point_spread > home_team_score
@@ -35,12 +35,20 @@ class NflMatchup < ActiveRecord::Base
 		end
 	end
 
+	def winning_team
+		if self.final?
+			return home_team_id if home_team_score > away_team_score
+			return away_team_id if away_team_score > home_team_score
+			return "tie" if home_team_score == away_team_score
+		end
+	end
+
 
 # PRIVATE METHODS
 private
 	def score_nfl_picks_if_matchup_is_final
 		if self.final_changed? && self.final == true
-			self.nfl_picks.each { |pick| pick.score_pick(self.winning_team) }
+			self.nfl_picks.each { |pick| pick.score_pick(self.winning_team, self.winning_team_with_spread) }
 		end
 	end
 

@@ -27,7 +27,8 @@ class NflPick < ActiveRecord::Base
 # CLASS METHODS
 
 # INSTANCE METHODS
-	def score_pick(winning_team)
+	def score_pick(winning_team, winning_team_with_spread)
+		winning_team = winning_team_with_spread if self.pool_user.pool.pool_type.name == "supercontest"
 		if winning_team == "tie"
 			self.update_attributes(result: "tie")
 		elsif winning_team == self.nfl_team_id
