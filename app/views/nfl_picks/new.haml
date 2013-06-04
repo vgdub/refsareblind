@@ -1,6 +1,8 @@
 %h1 Choose your team
 %h2= "NFL WEEK #{CURRENT_NFL_WEEK}"
 
-.nfl-teams
-	- @available_teams.each do |team|
-		%p= team
+- if @pool.pool_type == PoolType.where(name: "survival").first
+	= render "new_survival_pick"
+
+- if @pool.pool_type == PoolType.where(name: "super contest").first
+	= render "new_supercontest_picks"

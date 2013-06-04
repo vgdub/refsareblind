@@ -4,7 +4,10 @@ class NflPicksController < ApplicationController
 	before_action :require_settled_payment
 
 	def new
-		@available_teams = NflTeam.all - @current_entry.nfl_teams_used
+		if @pool.pool_type == PoolType.where(name: "survival").first
+			@available_teams = NflTeam.all - @current_entry.nfl_teams_used
+		end
+		@matchups = NflMatchup.where(week: CURRENT_NFL_WEEK)
 	end
 
 	def create

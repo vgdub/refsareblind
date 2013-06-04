@@ -1,0 +1,8 @@
+.matchups
+	- @matchups.each do |matchup|
+		.matchup
+			%p= "#{matchup.away_team} #{point_spreadify(matchup.point_spread.to_f)} @ #{matchup.home_team}"
+			/ .home-team
+			/ 	%p= matchup.home_team
+			/ .away-team
+			/ 	%p= matchup.away_team
