@@ -23,7 +23,7 @@ class NflPicksController < ApplicationController
 			NflPick.create(pool_user_id: @current_entry.id, nfl_team_id: params[:nfl_team_id], nfl_matchup_id: params[:nfl_matchup_id])
 			flash[:notice] = "Your pick has successfully been created"
 		end
-		redirect_to new_nfl_pick_url(@pool.slug)
+		redirect_to new_pick_url(@pool.slug)
 	end
 
 private

@@ -28,3 +28,11 @@
 	STRIPE_PUBLISHABLE_KEY
 	STRIPE_SECRET_KEY
 	CURRENT_NFL_WEEK - The current week of the NFL season
+
+# Process Flow
+	- CURRENT_NFL_WEEK is changed in the database to a new week
+	- This triggers new picks being available for selection
+	- Entries make their picks for the week
+	- At a specified DateTime the picks are locked
+	- When an NFL gmae is finished, the matchup is set to finished
+		- This effectively scores the results

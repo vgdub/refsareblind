@@ -55,4 +55,4 @@ $ ->
 			team_picked = $(e.target).attr("data-team-id")
 			$(".current-pick").text($(e.target).text())
 			$(".current-pick-team-id").val(team_picked)
-			$(".current-pick-matchup-id").val($(e.target).parents().find(".matchup").attr("data-matchup-id"))
+			$(".current-pick-matchup-id").val($(e.target).parents(".matchup").attr("data-matchup-id"))

@@ -29,7 +29,7 @@ RefsAreBlind::Application.routes.draw do
   post "/pool-users/remove-approval" => "pool_users#remove_approval", as: :remove_approval
 
 # PICKS
-  get "/pools/:slug/picks/new" => "nfl_picks#new", as: :new_nfl_pick
+  get "/pools/:slug/picks/new" => "nfl_picks#new", as: :new_pick
   post "/pools/:slug/picks/update_unlocked_survival_pick" => "nfl_picks#update_unlocked_survival_pick", as: :update_unlocked_survival_pick
 
 end
