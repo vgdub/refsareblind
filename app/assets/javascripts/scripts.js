@@ -57,7 +57,7 @@ $(function() {
       total_picks = parseInt($(".picks-table").attr("data-total-picks"), 10);
       return $(".picks-table").attr("data-total-picks", total_picks + 1);
     };
-    return pick_is_not_duplicate = function(team_picked) {
+    pick_is_not_duplicate = function(team_picked) {
       var teams_picked;
       teams_picked = [];
       _.each($("td.pick"), function(item) {
@@ -71,5 +71,14 @@ $(function() {
         return true;
       }
     };
+  }
+  if ($("body").hasClass("nfl_picks-new") && $(".pool").attr("data-pool-type") === "survival") {
+    return $(".matchup-team").on("click", function(e) {
+      var team_picked;
+      team_picked = $(e.target).attr("data-team-id");
+      $(".current-pick").text($(e.target).text());
+      $(".current-pick-team-id").val(team_picked);
+      return $(".current-pick-matchup-id").val($(e.target).parents().find(".matchup").attr("data-matchup-id"));
+    });
   }
 });

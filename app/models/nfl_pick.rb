@@ -18,6 +18,7 @@ class NflPick < ActiveRecord::Base
 
 # CONFIG METHODS
 	def to_s
+		self.nfl_team
 	end
 
 	def to_param

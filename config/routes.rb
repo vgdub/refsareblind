@@ -30,5 +30,6 @@ RefsAreBlind::Application.routes.draw do
 
 # PICKS
   get "/pools/:slug/picks/new" => "nfl_picks#new", as: :new_nfl_pick
+  post "/pools/:slug/picks/update_unlocked_survival_pick" => "nfl_picks#update_unlocked_survival_pick", as: :update_unlocked_survival_pick
 
 end

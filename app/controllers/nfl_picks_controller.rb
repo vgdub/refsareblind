@@ -5,12 +5,25 @@ class NflPicksController < ApplicationController
 
 	def new
 		if @pool.pool_type == PoolType.where(name: "survival").first
-			@available_teams = NflTeam.all - @current_entry.nfl_teams_used
+			@teams_used = @current_entry.nfl_teams_used
+			@available_teams = NflTeam.all - @teams_used
 		end
 		@matchups = NflMatchup.where(week: CURRENT_NFL_WEEK)
 	end
 
 	def create
+	end
+
+	def update_unlocked_survival_pick
+		current_pick = @current_entry.nfl_survival_pick(CURRENT_NFL_WEEK)
+		if current_pick.present?
+			current_pick.update_attributes(nfl_team_id: params[:nfl_team_id], nfl_matchup_id: params[:nfl_matchup_id])
+			flash[:notice] = "Your pick has successfully been updated"
+		else
+			NflPick.create(pool_user_id: @current_entry.id, nfl_team_id: params[:nfl_team_id], nfl_matchup_id: params[:nfl_matchup_id])
+			flash[:notice] = "Your pick has successfully been created"
+		end
+		redirect_to new_nfl_pick_url(@pool.slug)
 	end
 
 private

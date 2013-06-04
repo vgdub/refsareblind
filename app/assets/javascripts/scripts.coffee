@@ -47,5 +47,12 @@ $ ->
 			_.each $("td.pick"), (item) ->
 				if $(item).attr("data-team-id")
 					teams_picked.push $(item).attr("data-team-id")
-
 			if _.include(teams_picked, team_picked) then return false else return true
+
+	if $("body").hasClass("nfl_picks-new") && $(".pool").attr("data-pool-type") == "survival"
+
+		$(".matchup-team").on "click", (e) ->
+			team_picked = $(e.target).attr("data-team-id")
+			$(".current-pick").text($(e.target).text())
+			$(".current-pick-team-id").val(team_picked)
+			$(".current-pick-matchup-id").val($(e.target).parents().find(".matchup").attr("data-matchup-id"))
