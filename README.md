@@ -34,5 +34,5 @@
 	- This triggers new picks being available for selection
 	- Entries make their picks for the week
 	- At a specified DateTime the picks are locked
-	- When an NFL gmae is finished, the matchup is set to finished
+	- When an NFL game is finished, the matchup is set to finished
 		- This effectively scores the results

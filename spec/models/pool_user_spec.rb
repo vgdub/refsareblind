@@ -103,3 +103,4 @@ describe PoolUser do
   end
 
 end
+
